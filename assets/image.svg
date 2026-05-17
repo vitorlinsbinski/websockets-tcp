@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="320" viewBox="0 0 1200 320" role="img" aria-label="Sockets (TCP Unicast via WebSocket) — hosts se comunicando">
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="360" viewBox="0 0 1200 360" role="img" aria-label="Sockets (TCP Unicast via WebSocket) — hosts se comunicando">
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0" stop-color="#0b1220"/>
@@ -27,8 +27,8 @@
   </defs>
 
   <!-- Card -->
-  <rect x="20" y="20" width="1160" height="280" rx="26" fill="url(#bg)" filter="url(#shadow)"/>
-  <rect x="20" y="20" width="1160" height="280" rx="26" fill="none" stroke="#223047" stroke-width="2"/>
+  <rect x="20" y="20" width="1160" height="320" rx="26" fill="url(#bg)" filter="url(#shadow)"/>
+  <rect x="20" y="20" width="1160" height="320" rx="26" fill="none" stroke="#223047" stroke-width="2"/>
 
   <!-- Left illustration: two hosts + packets (no connecting lines) -->
   <g transform="translate(70,62)">
@@ -79,11 +79,6 @@
       <text x="33" y="20" text-anchor="middle" class="mono">WS</text>
     </g>
 
-    <text x="255" y="266" text-anchor="middle" class="mono">
-      <tspan class="muted">handshake TCP</tspan>
-      <tspan class="muted"> · </tspan>
-      <tspan class="muted">mensagens unicast</tspan>
-    </text>
   </g>
 
   <!-- Text block (right) -->
@@ -91,5 +86,4 @@
   <text x="620" y="162" class="sub">Hosts se comunicando em modo unicast</text>
   <text x="620" y="190" class="sub">Simulação didática de estados TCP via WebSocket</text>
 
-  <text x="620" y="236" class="mono">/server · /client · ws://&lt;host&gt;:3000/ws</text>
 </svg>

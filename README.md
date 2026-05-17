@@ -1,4 +1,4 @@
-![Sockets (TCP Unicast via WebSocket)](assets/logo.svg)
+![Sockets (TCP Unicast via WebSocket)](assets/image.svg)
 
 Projeto didático para a disciplina **Introdução a Redes**.
 
