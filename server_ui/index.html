@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="pt-BR">
+   <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>TCP Server — Painel do Servidor</title>
+      <link rel="stylesheet" href="/server_ui/style.css" />
+   </head>
+
+   <body>
+      <header>
+         <div class="hlogo">
+            <div class="hlogo-dot"></div>
+            <div>
+               <div class="hlogo-title">TCP SERVER — PAINEL DO SERVIDOR</div>
+               <div class="hlogo-sub">
+                  UNICAST · ENDEREÇAMENTO DIRETO POR CLIENTE
+               </div>
+            </div>
+         </div>
+         <div class="hbadges">
+            <span class="badge badge-tcp">TCP</span>
+            <span class="badge badge-uni">UNICAST</span>
+            <div class="ws-status">
+               <div
+                  class="wsdot"
+                  id="wsDot"
+                  style="background: var(--text3)"
+               ></div>
+               <span id="wsLabel">desconectado</span>
+            </div>
+         </div>
+      </header>
+
+      <div class="layout">
+         <div class="left">
+            <div class="sec-hdr">
+               <div class="sec-dot"></div>
+               Status do Servidor
+            </div>
+            <div class="status-bar">
+               <div class="status-box">
+                  <div class="sdot sdot-on" id="sdot"></div>
+                  <div>
+                     <div class="stext" id="stext">
+                        ONLINE — WebSocket ativo
+                     </div>
+                     <div class="saddr" id="saddr">ws://localhost:3000/ws</div>
+                  </div>
+               </div>
+            </div>
+
+            <div class="sec-hdr">
+               <div class="sec-dot"></div>
+               Clientes Conectados
+               <div class="sec-count" id="ccount">0</div>
+            </div>
+            <div class="client-list" id="clientList">
+               <div class="no-clients" id="noClients">
+                  Aguardando conexões TCP...<br />
+                  <span style="font-size: 9px; color: var(--text3)"
+                     >Abra http://localhost:3000/client<br />em outra aba para
+                     conectar clientes</span
+                  >
+               </div>
+            </div>
+         </div>
+
+         <div class="right" id="rightPanel">
+            <div class="welcome" id="welcomeView">
+               <div class="wicon">📡</div>
+               <div class="wtitle">Servidor TCP ativo</div>
+               <div class="wsub">
+                  Selecione um cliente na lista à esquerda<br />
+                  para iniciar comunicação unicast<br /><br />
+                  <span style="color: var(--border3)"
+                     >Cliente: http://localhost:3000/client</span
+                  >
+               </div>
+            </div>
+
+            <div
+               id="chatView"
+               style="
+                  display: none;
+                  flex-direction: column;
+                  flex: 1;
+                  overflow: hidden;
+               "
+            >
+               <div class="chat-hdr">
+                  <div class="chat-av" id="chatAv"></div>
+                  <div>
+                     <div class="chat-name" id="chatName">—</div>
+                     <div class="chat-meta" id="chatMeta">—</div>
+                  </div>
+                  <div class="chat-actions">
+                     <button
+                        class="ibtn"
+                        onclick="disconnectClient()"
+                        style="color: var(--red); border-color: var(--red2)"
+                     >
+                        ✕ Desconectar
+                     </button>
+                  </div>
+               </div>
+
+               <div class="log" id="logArea"></div>
+
+               <div class="send-bar">
+                  <div class="send-wrap">
+                     <span class="target-chip" id="chip">PARA: —</span>
+                     <textarea
+                        id="msgInput"
+                        rows="1"
+                        placeholder="Mensagem unicast..."
+                        onkeydown="
+                           if (event.key === 'Enter' && !event.shiftKey) {
+                              event.preventDefault();
+                              sendMsg();
+                           }
+                        "
+                        oninput="
+                           this.style.height = 'auto';
+                           this.style.height = this.scrollHeight + 'px';
+                        "
+                     ></textarea>
+                  </div>
+                  <button
+                     class="sbtn"
+                     id="btnSend"
+                     onclick="sendMsg()"
+                     disabled
+                  >
+                     ENVIAR
+                  </button>
+               </div>
+            </div>
+         </div>
+      </div>
+      <script src="/server_ui/script.js"></script>
+   </body>
+</html>

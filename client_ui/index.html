@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="pt-BR">
+   <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>TCP Client — Painel do Cliente</title>
+      <link rel="stylesheet" href="/client_ui/style.css" />
+   </head>
+
+   <body>
+      <header>
+         <div class="hlogo-dot"></div>
+         <div>
+            <div class="htitle">TCP CLIENT — PAINEL DO CLIENTE</div>
+            <div class="hsub">MODO: UNICAST · CANAL PONTO-A-PONTO</div>
+         </div>
+         <div class="hbadges">
+            <span class="badge badge-tcp">TCP</span>
+            <span class="badge badge-client">CLIENT</span>
+         </div>
+      </header>
+
+      <div class="main">
+         <div class="connect-panel" id="connectPanel">
+            <div class="connect-card">
+               <div class="cc-icon">🔌</div>
+               <div class="cc-title">Conectar ao Servidor TCP</div>
+               <div class="cc-sub">
+                  Informe seu nome e o endereço do servidor<br />para iniciar o
+                  handshake TCP 3-way
+               </div>
+
+               <div class="field-group">
+                  <div class="flabel">SEU NOME (IDENTIFICAÇÃO DO CLIENTE)</div>
+                  <input
+                     type="text"
+                     id="clientName"
+                     placeholder="Ex: Alice, Bob, Cliente-01..."
+                     maxlength="32"
+                  />
+               </div>
+
+               <div class="row2">
+                  <div class="field-group">
+                     <div class="flabel">IP DO SERVIDOR</div>
+                     <input
+                        type="text"
+                        id="serverIP"
+                        value="localhost"
+                        placeholder="localhost"
+                     />
+                  </div>
+                  <div class="field-group">
+                     <div class="flabel">PORTA DO SERVIDOR</div>
+                     <input
+                        type="number"
+                        id="serverPort"
+                        value="3000"
+                        placeholder="3000"
+                     />
+                  </div>
+               </div>
+
+               <button
+                  class="conn-btn"
+                  id="btnConnect"
+                  onclick="connectToServer()"
+               >
+                  ▶ INICIAR CONEXÃO TCP
+               </button>
+               <div class="conn-error" id="connError"></div>
+            </div>
+         </div>
+
+         <div class="chat-view" id="chatView">
+            <div class="client-hdr">
+               <div class="cav" id="myAv">—</div>
+               <div>
+                  <div class="cname" id="myName">—</div>
+                  <div class="cmeta" id="myMeta">—</div>
+               </div>
+               <div class="cstatus">
+                  <div class="csdot"></div>
+                  <span class="cstext">Conectado ao servidor TCP</span>
+               </div>
+            </div>
+
+            <div class="log" id="logArea">
+               <div class="log-div">— canal TCP estabelecido —</div>
+            </div>
+
+            <div class="tcp-strip">
+               <div class="tcp-kv">
+                  <span class="tcp-k">PROTOCOLO</span
+                  ><span class="tcp-v">TCP (orientado à conexão)</span>
+               </div>
+               <div class="tcp-kv">
+                  <span class="tcp-k">TIPO</span
+                  ><span class="tcp-v">UNICAST</span>
+               </div>
+               <div class="tcp-kv">
+                  <span class="tcp-k">SOCKET LOCAL</span
+                  ><span class="tcp-v" id="localSocket">—</span>
+               </div>
+               <div class="tcp-kv">
+                  <span class="tcp-k">SOCKET REMOTO</span
+                  ><span class="tcp-v" id="remoteSocket">—</span>
+               </div>
+               <div class="tcp-kv">
+                  <span class="tcp-k">ESTADO</span
+                  ><span class="tcp-v" style="color: var(--green)" id="tcpState"
+                     >ESTABLISHED</span
+                  >
+               </div>
+            </div>
+
+            <div class="send-bar">
+               <div class="send-wrap">
+                  <span class="server-chip">PARA: SERVIDOR</span>
+                  <textarea
+                     id="msgInput"
+                     rows="1"
+                     placeholder="Mensagem para o servidor..."
+                     onkeydown="
+                        if (event.key === 'Enter' && !event.shiftKey) {
+                           event.preventDefault();
+                           sendMsg();
+                        }
+                     "
+                     oninput="
+                        this.style.height = 'auto';
+                        this.style.height = this.scrollHeight + 'px';
+                     "
+                  ></textarea>
+               </div>
+               <button class="sbtn" id="btnSend" onclick="sendMsg()">
+                  ENVIAR
+               </button>
+               <button class="disc-btn" onclick="disconnect()">
+                  DESCONECTAR
+               </button>
+            </div>
+         </div>
+      </div>
+
+      <script src="/client_ui/script.js"></script>
+   </body>
+</html>
