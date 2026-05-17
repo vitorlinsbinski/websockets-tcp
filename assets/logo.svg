@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="320" viewBox="0 0 1200 320" role="img" aria-label="Sockets (TCP Unicast via WebSocket)">
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="320" viewBox="0 0 1200 320" role="img" aria-label="Sockets (TCP Unicast via WebSocket) — hosts se comunicando">
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0" stop-color="#0b1220"/>
       <stop offset="1" stop-color="#111827"/>
     </linearGradient>
-    <linearGradient id="line" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0" stop-color="#22d3ee"/>
-      <stop offset="0.5" stop-color="#60a5fa"/>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#60a5fa"/>
       <stop offset="1" stop-color="#34d399"/>
     </linearGradient>
     <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
@@ -31,61 +30,66 @@
   <rect x="20" y="20" width="1160" height="280" rx="26" fill="url(#bg)" filter="url(#shadow)"/>
   <rect x="20" y="20" width="1160" height="280" rx="26" fill="none" stroke="#223047" stroke-width="2"/>
 
-  <!-- Network glyph (left) -->
+  <!-- Left illustration: two hosts + packets (no connecting lines) -->
   <g transform="translate(70,62)">
-    <!-- nodes -->
-    <circle cx="44" cy="98" r="18" fill="#0f172a" stroke="#2b3a55" stroke-width="2"/>
-    <circle cx="44" cy="98" r="7" fill="#22d3ee"/>
+    <!-- Host A (server) -->
+    <rect x="0" y="32" width="190" height="140" rx="18" fill="#0f172a" stroke="#2b3a55" stroke-width="2"/>
+    <rect x="18" y="52" width="154" height="88" rx="12" fill="#0b1220" stroke="#223047"/>
+    <rect x="72" y="148" width="46" height="10" rx="5" fill="#223047"/>
+    <circle cx="95" cy="170" r="4" fill="#34d399"/>
+    <text x="95" y="206" text-anchor="middle" class="mono">HOST A</text>
 
-    <circle cx="148" cy="58" r="16" fill="#0f172a" stroke="#2b3a55" stroke-width="2"/>
-    <circle cx="148" cy="58" r="6" fill="#60a5fa"/>
+    <!-- Host B (client) -->
+    <rect x="320" y="48" width="190" height="124" rx="18" fill="#0f172a" stroke="#2b3a55" stroke-width="2"/>
+    <rect x="338" y="66" width="154" height="76" rx="12" fill="#0b1220" stroke="#223047"/>
+    <rect x="392" y="148" width="46" height="10" rx="5" fill="#223047"/>
+    <circle cx="415" cy="168" r="4" fill="#60a5fa"/>
+    <text x="415" y="206" text-anchor="middle" class="mono">HOST B</text>
 
-    <circle cx="148" cy="138" r="16" fill="#0f172a" stroke="#2b3a55" stroke-width="2"/>
-    <circle cx="148" cy="138" r="6" fill="#34d399"/>
+    <!-- Floating packets (unicast feel) -->
+    <g>
+      <rect x="216" y="70" width="64" height="36" rx="10" fill="#0b1220" stroke="#2b3a55"/>
+      <text x="248" y="94" text-anchor="middle" class="mono">SYN</text>
 
-    <circle cx="260" cy="98" r="18" fill="#0f172a" stroke="#2b3a55" stroke-width="2"/>
-    <circle cx="260" cy="98" r="7" fill="#a78bfa"/>
+      <rect x="214" y="116" width="88" height="36" rx="10" fill="#0b1220" stroke="#2b3a55"/>
+      <text x="258" y="140" text-anchor="middle" class="mono">SYN-ACK</text>
 
-    <!-- links -->
-    <path d="M62 92 C 92 76, 112 66, 132 60" fill="none" stroke="url(#line)" stroke-width="4" stroke-linecap="round"/>
-    <path d="M62 104 C 92 120, 112 130, 132 136" fill="none" stroke="url(#line)" stroke-width="4" stroke-linecap="round"/>
-    <path d="M164 58 C 196 58, 218 74, 244 92" fill="none" stroke="url(#line)" stroke-width="4" stroke-linecap="round"/>
-    <path d="M164 138 C 196 138, 218 122, 244 104" fill="none" stroke="url(#line)" stroke-width="4" stroke-linecap="round"/>
+      <rect x="234" y="162" width="64" height="36" rx="10" fill="#0b1220" stroke="#2b3a55"/>
+      <text x="266" y="186" text-anchor="middle" class="mono">ACK</text>
+    </g>
 
-    <!-- unicast arrow (one direction emphasis) -->
-    <path d="M286 98 C 340 98, 382 98, 430 98" fill="none" stroke="url(#line)" stroke-width="7" stroke-linecap="round"/>
-    <path d="M430 98 l-18 -12 v24 z" fill="#34d399"/>
+    <!-- Direction cue without lines: small arrowheads + glow dots -->
+    <g opacity="0.95">
+      <path d="M206 88 l14 -10 v20 z" fill="#60a5fa"/>
+      <path d="M308 134 l-14 -10 v20 z" fill="#34d399"/>
+      <path d="M208 180 l14 -10 v20 z" fill="#a78bfa"/>
+    </g>
 
-    <!-- badges -->
-    <g transform="translate(0,182)">
-      <rect x="0" y="0" width="78" height="30" rx="15" fill="#0f172a" stroke="#2b3a55"/>
+    <!-- Badges -->
+    <g transform="translate(0,224)">
+      <rect x="0" y="0" width="78" height="30" rx="15" fill="#0b1220" stroke="#2b3a55"/>
       <text x="39" y="20" text-anchor="middle" class="mono">TCP</text>
     </g>
-    <g transform="translate(92,182)">
-      <rect x="0" y="0" width="92" height="30" rx="15" fill="#0f172a" stroke="#2b3a55"/>
+    <g transform="translate(92,224)">
+      <rect x="0" y="0" width="92" height="30" rx="15" fill="#0b1220" stroke="#2b3a55"/>
       <text x="46" y="20" text-anchor="middle" class="mono">UNICAST</text>
     </g>
-    <g transform="translate(198,182)">
-      <rect x="0" y="0" width="66" height="30" rx="15" fill="#0f172a" stroke="#2b3a55"/>
+    <g transform="translate(198,224)">
+      <rect x="0" y="0" width="66" height="30" rx="15" fill="#0b1220" stroke="#2b3a55"/>
       <text x="33" y="20" text-anchor="middle" class="mono">WS</text>
     </g>
 
-    <!-- handshake hint -->
-    <text x="214" y="246" text-anchor="middle" class="mono">
-      <tspan class="muted">SYN</tspan>
+    <text x="255" y="266" text-anchor="middle" class="mono">
+      <tspan class="muted">handshake TCP</tspan>
       <tspan class="muted"> · </tspan>
-      <tspan class="muted">SYN-ACK</tspan>
-      <tspan class="muted"> · </tspan>
-      <tspan class="muted">ACK</tspan>
-      <tspan class="muted"> · </tspan>
-      <tspan class="muted">FIN</tspan>
+      <tspan class="muted">mensagens unicast</tspan>
     </text>
   </g>
 
   <!-- Text block (right) -->
-  <text x="560" y="124" class="title">Sockets</text>
-  <text x="560" y="162" class="sub">Servidor e clientes com mensagens unicast</text>
-  <text x="560" y="190" class="sub">Simulação didática de estados TCP via WebSocket</text>
+  <text x="620" y="124" class="title">Sockets</text>
+  <text x="620" y="162" class="sub">Hosts se comunicando em modo unicast</text>
+  <text x="620" y="190" class="sub">Simulação didática de estados TCP via WebSocket</text>
 
-  <text x="560" y="236" class="mono">/server · /client · ws://&lt;host&gt;:3000/ws</text>
+  <text x="620" y="236" class="mono">/server · /client · ws://&lt;host&gt;:3000/ws</text>
 </svg>
