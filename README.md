@@ -1,4 +1,4 @@
-# Atividade 2 — Sockets (TCP Unicast via WebSocket)
+![Sockets (TCP Unicast via WebSocket)](assets/logo.svg)
 
 Projeto didático para a disciplina **Introdução a Redes**.
 
