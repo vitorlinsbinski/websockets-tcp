@@ -87,10 +87,13 @@ function handle(msg) {
       return;
    }
    if (msg.type === 'sys') {
-      // Show in current log or as floating toast
-      if (selectedId) pushLog(selectedId, 'sys', msg.msg);
-      if (selectedId) renderLog(selectedId);
-      else appendGlobalSys(msg.msg);
+      const id = msg.clientId;
+      if (id && chatLogs.has(id)) {
+         pushLog(id, 'sys', msg.msg);
+         if (selectedId === id) renderLog(id);
+      } else {
+         toast(msg.msg);
+      }
       return;
    }
 }

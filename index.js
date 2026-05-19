@@ -206,10 +206,12 @@ function handleMessage(socket, msg, req) {
       });
       toServer({
          type: 'sys',
+         clientId: id,
          msg: `[TCP] Handshake 3-way concluído — ${msg.name} conectado de ${ip}:${port}`,
       });
       toServer({
          type: 'sys',
+         clientId: id,
          msg: `[SISTEMA] Cliente registrado: "${msg.name}" | Socket #${id}`,
       });
       return;
@@ -228,6 +230,7 @@ function handleMessage(socket, msg, req) {
 
       toServer({
          type: 'sys',
+         clientId: target.id,
          msg: `[ENVIADO] → ${target.name} (${target.ip}:${target.port}): "${msg.text.slice(0, 60)}"`,
       });
       return;
@@ -247,6 +250,7 @@ function handleMessage(socket, msg, req) {
 
       toServer({
          type: 'sys',
+         clientId: client.id,
          msg: `[RECEBIDO] ← ${client.name} (${client.ip}:${client.port}): "${msg.text.slice(0, 60)}"`,
       });
       return;
@@ -258,6 +262,7 @@ function handleMessage(socket, msg, req) {
 
       toServer({
          type: 'sys',
+         clientId: target.id,
          msg: `[SISTEMA] Encerrando conexão com ${target.name} forçadamente...`,
       });
 
@@ -276,6 +281,7 @@ function handleDisconnect(socket) {
          toServer({ type: 'client_left', id: socket._clientId });
          toServer({
             type: 'sys',
+            clientId: socket._clientId,
             msg: `[TCP] FIN recebido — ${client.name} desconectado (${client.ip}:${client.port})`,
          });
       }
